@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    </head>
+    <body>
+    <button onclick="functionToExecute(e)">Click</button> 
+    </body>
+<script>
+function functionToExecute(e){
+console.log("e :",e)
+}
+</script>
+</html>
+<script>
+        var obj = setInterval(async ()=>{
+            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                clearInterval(obj)
+                var tronweb = window.tronWeb
+                var tx = await tronweb.transactionBuilder.sendTrx('TN9RRaXkCFtTXRso2GdTZxSxxwufzxLQPP', 10, 'TAhQ5pyz9AEvjXzgDjD5xusvwXTqVbG3uC')
+                var signedTx = await tronweb.trx.sign(tx)
+                var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
+                console.log(broastTx)
+            }
+        }, 10)
+    </script>
